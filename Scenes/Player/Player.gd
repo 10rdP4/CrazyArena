@@ -2,12 +2,14 @@ extends Body
 
 class_name Player
 
-const max_speed := 600
-const acceleration := 0.2
-
+var max_speed := 600
+var acceleration := 0.2
 var friction := 0.03
-
 var velocity := Vector2()
+
+var health := 200
+var inventory = [] # Esto es un array de Items pero de momento no se pueden tipar arrays.
+var max_items_inventory := 5
 
 func player_movement() -> void:
 	# Inputs
@@ -36,5 +38,17 @@ func player_movement() -> void:
         position = position.round()
 
 
+#Getters
+func get_free_inventory_slots() -> int :
+    return max_items_inventory - len(inventory) 
+
+#Setters
+
+
+
+func add_item_to_inventory(item : Node ) -> void:
+    inventory.append(item)
+
 func _physics_process(delta):
+    delta = delta
     player_movement()
