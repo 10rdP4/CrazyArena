@@ -2,6 +2,8 @@ extends Area2D
 
 class_name Item
 
+enum item_type  {FOOD, WEAPON, ARMOR}
+
 # Añadir item al inventario del jugador
 func _on_Item_body_entered(body:Node) -> void:
 	if body.name == "Player":

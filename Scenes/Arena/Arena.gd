@@ -1,4 +1,4 @@
-extends Control
+extends TileMap
 
 class_name Arena
 

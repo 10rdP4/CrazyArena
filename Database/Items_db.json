@@ -1,0 +1,26 @@
+{
+    "food" : 
+    [
+        {
+            "id" : 0,
+            "name" : "Apple"
+        }
+    ],
+    "weapons" :
+    [
+        {
+            "id": 0,
+            "name" : "Pistol",
+            "damage" : 20
+        }
+    ],
+    "armor" :
+    [
+        {
+            "id" : 0,
+            "name" : "Helmet",
+            "protection" : 10
+        }
+    ]
+
+}

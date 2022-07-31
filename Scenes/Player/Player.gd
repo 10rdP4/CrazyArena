@@ -36,7 +36,7 @@ func player_input() -> void:
 		print("current item" + str(get_current_item()))
 		print("Inventory" + str(inventory))
 	if Input.is_action_just_pressed("drop_item"):
-		remove_current_item()
+		drop_current_item()
 
 func player_movement() -> void:
 	if direction.length() > 0:
@@ -66,7 +66,7 @@ func add_item_to_inventory(item) -> void:
 	inventory.append(item)
 	inventory_length = inventory.size()
 
-func remove_current_item():
+func drop_current_item():
 	#inventory.remove(current_item_pos)
 	print("DROPPING ITEMS NOT IMPLEMENTED YET")
 
