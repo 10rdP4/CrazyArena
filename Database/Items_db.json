@@ -3,12 +3,14 @@
     [
         {
             "id" : 0,
+            "type" : "consumible",
             "name" : "Apple",
             "icon" : "ruta",
             "stackeable" : true
         },
         {
             "id" : 1,
+            "type" : "consumible",
             "name" : "Taco",
             "icon" : "ruta",
             "stackeable" : true
@@ -18,16 +20,19 @@
     [
         {
             "id": 0,
+            "type" : "gun",
             "name" : "Pistol",
             "icon" : "ruta",
             "damage" : 20,
-            "stackeable" : false
+            "stackeable" : false,
+            "bullet" : "basic_bullet"
         }
     ],
     "armor" :
     [
         {
             "id" : 0,
+            "type" : "equipable",
             "name" : "Helmet",
             "icon" : "ruta",
             "protection" : 10,

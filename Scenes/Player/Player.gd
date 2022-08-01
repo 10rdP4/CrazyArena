@@ -30,13 +30,17 @@ func player_input() -> void:
 	if Input.is_action_just_released("scroll_up") and current_item_pos < inventory_length - 1:
 		current_item_pos = current_item_pos + 1
 		set_current_item_label()
+		change_weapon_visibility()
 
 	if Input.is_action_just_released("scroll_down") and current_item_pos > 0:
 		current_item_pos = current_item_pos - 1
 		set_current_item_label()
+		change_weapon_visibility()
 
 	if Input.is_action_just_pressed("drop_item"):
 		drop_current_item()
+
+	invert_player_sprite(Global.get_global_mouse_position().x - Global.player.position.x < 0)
 
 func player_movement() -> void:
 	if direction.length() > 0:
@@ -63,19 +67,42 @@ func get_current_item():
 #Setters
 func set_current_item_label():
 	var hud :HUD = $Camera/HUD
-	hud.find_node("Current_Item", true).text = str(current_item_pos) + " -> "+ inventory[current_item_pos]["name"]
+	hud.find_node("Current_Item", true).text = str(current_item_pos) + " -> "+ get_current_item()["name"]
+
+func change_weapon_visibility():
+	if get_current_item()["type"] == "gun":
+		$Weapon.visible = true
+	else:
+		$Weapon.visible = false
 
 func add_item_to_inventory(item: Dictionary) -> void:
 	inventory.append(item)
 	inventory_length = inventory.size()
 	set_current_item_label()
 
-func drop_current_item():
+func invert_player_sprite(invert: bool) -> void:
+	$Sprite.flip_h = invert
+
+func weapon_point_to_mouse() -> void:
+	var var_y :float= Global.get_global_mouse_position().y - Global.player.position.y
+	var var_x :float= Global.get_global_mouse_position().x - Global.player.position.x
+	var correcion :int
+#-------------------------------------------------------------
+# Correciones para evitar que la division sea 0 y permitir el giro completo del arma
+	var_x = 1.0 if var_x < 1.0 and var_x > -1.0 else var_x
+	correcion = 180 if var_x < 0 else 0
+#-------------------------------------------------------------
+	$Weapon.rotation_degrees = rad2deg(atan( var_y / var_x )) + correcion
+
+func drop_current_item() -> void:
 	#inventory.remove(current_item_pos)
-	print(inventory)
 	print("DROPPING ITEMS NOT IMPLEMENTED YET")
 
 func _physics_process(delta):
-	delta = delta
+	delta = delta # esto es solo para que no me salga la advertencia de variable no usada
 	player_input()
 	player_movement()
+
+	if $Weapon.visible == true:
+		weapon_point_to_mouse()
+
