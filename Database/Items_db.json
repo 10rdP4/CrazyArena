@@ -3,15 +3,25 @@
     [
         {
             "id" : 0,
-            "name" : "Apple"
+            "name" : "Apple",
+            "icon" : "ruta",
+            "stackeable" : true
+        },
+        {
+            "id" : 1,
+            "name" : "Taco",
+            "icon" : "ruta",
+            "stackeable" : true
         }
     ],
-    "weapons" :
+    "weapon" :
     [
         {
             "id": 0,
             "name" : "Pistol",
-            "damage" : 20
+            "icon" : "ruta",
+            "damage" : 20,
+            "stackeable" : false
         }
     ],
     "armor" :
@@ -19,7 +29,9 @@
         {
             "id" : 0,
             "name" : "Helmet",
-            "protection" : 10
+            "icon" : "ruta",
+            "protection" : 10,
+            "stackeable" : false
         }
     ]
 

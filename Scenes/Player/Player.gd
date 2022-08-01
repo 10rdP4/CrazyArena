@@ -68,6 +68,7 @@ func add_item_to_inventory(item) -> void:
 
 func drop_current_item():
 	#inventory.remove(current_item_pos)
+	print(inventory)
 	print("DROPPING ITEMS NOT IMPLEMENTED YET")
 
 func _physics_process(delta):
