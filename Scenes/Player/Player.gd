@@ -29,12 +29,12 @@ func player_input() -> void:
 	# Inventory
 	if Input.is_action_just_released("scroll_up") and current_item_pos < inventory_length - 1:
 		current_item_pos = current_item_pos + 1
-		print("current item" + str(get_current_item()))
-		print("Inventory" + str(inventory))
+		set_current_item_label()
+
 	if Input.is_action_just_released("scroll_down") and current_item_pos > 0:
 		current_item_pos = current_item_pos - 1
-		print("current item" + str(get_current_item()))
-		print("Inventory" + str(inventory))
+		set_current_item_label()
+
 	if Input.is_action_just_pressed("drop_item"):
 		drop_current_item()
 
@@ -61,10 +61,14 @@ func get_current_item():
 	return inventory[current_item_pos]
 
 #Setters
+func set_current_item_label():
+	var hud :HUD = $Camera/HUD
+	hud.find_node("Current_Item", true).text = str(current_item_pos) + " -> "+ inventory[current_item_pos]["name"]
 
-func add_item_to_inventory(item) -> void:
+func add_item_to_inventory(item: Dictionary) -> void:
 	inventory.append(item)
 	inventory_length = inventory.size()
+	set_current_item_label()
 
 func drop_current_item():
 	#inventory.remove(current_item_pos)
