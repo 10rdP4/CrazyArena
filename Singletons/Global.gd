@@ -1,6 +1,7 @@
 extends Control
 
 const PACKED_PLAYER: PackedScene = preload("res://Scenes/Player/Player.tscn")
+const PACKED_ITEM: PackedScene = preload("res://Scenes/Item/Item.tscn")
 
 # Variables
 #-----------------------------------------
@@ -31,6 +32,14 @@ func shoot_bullet(direction: Vector2) -> void:
 	bullet.fired_direction = direction
 	bullet.position = player.get_shoot_point()
 	arena.add_child(bullet, true)
+
+func instance_item(_item: Dictionary) -> void:
+	var item :Item= PACKED_ITEM.instance()
+	item.item_type = _item["type"]
+	item.item_id = _item["id"]
+	item.position.x = player.position.x
+	item.position.y = player.position.y
+	arena.add_child(item)
 
 func is_valid_node(node: Node) -> bool:
 	if !node:

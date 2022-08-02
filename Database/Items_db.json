@@ -3,14 +3,14 @@
     [
         {
             "id" : 0,
-            "type" : "consumible",
+            "type" : "food",
             "name" : "Apple",
             "icon" : "res://icon.png",
             "stackeable" : true
         },
         {
             "id" : 1,
-            "type" : "consumible",
+            "type" : "food",
             "name" : "Taco",
             "icon" : "res://icon.png",
             "stackeable" : true
@@ -20,7 +20,7 @@
     [
         {
             "id": 0,
-            "type" : "gun",
+            "type" : "weapon",
             "name" : "Pistol",
             "icon" : "res://Sprites/Items/Weapon/Pistol.png",
             "damage" : 20,
@@ -29,7 +29,7 @@
         },
         {
             "id": 1,
-            "type" : "gun",
+            "type" : "weapon",
             "name" : "Blue_Pistol",
             "icon" : "res://Sprites/Items/Weapon/Blue_Pistol.png",
             "damage" : 20,
@@ -41,7 +41,7 @@
     [
         {
             "id" : 0,
-            "type" : "equipable",
+            "type" : "armor",
             "name" : "Helmet",
             "icon" : "res://icon.png",
             "protection" : 10,

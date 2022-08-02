@@ -65,7 +65,7 @@ func get_shoot_direction() -> Vector2:
 	return Global.player.position.direction_to(Global.get_global_mouse_position())
 
 func item_main_action(item: Dictionary) -> void:
-	if item["type"] == "gun":
+	if item["type"] == "weapon":
 		Global.shoot_bullet(get_shoot_direction())
 	pass
 
@@ -86,7 +86,7 @@ func change_weapon_bullet() -> void:
 		Global.change_current_bullet(get_current_item()["bullet"])
 
 func change_weapon_visibility():
-	if get_current_item()["type"] == "gun":
+	if get_current_item()["type"] == "weapon":
 		change_weapon_bullet()
 		$Weapon/Sprite.texture = load(get_current_item()["icon"])
 		$Weapon.visible = true
@@ -116,6 +116,7 @@ func weapon_point_to_mouse() -> void:
 
 func drop_current_item() -> void:
 	#inventory.remove(current_item_pos)
+	Global.instance_item(get_current_item())
 	print("DROPPING ITEMS NOT IMPLEMENTED YET")
 
 func _physics_process(delta):
