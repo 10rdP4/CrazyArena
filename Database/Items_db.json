@@ -22,7 +22,16 @@
             "id": 0,
             "type" : "gun",
             "name" : "Pistol",
-            "icon" : "ruta",
+            "icon" : "res://Sprites/Items/Weapon/Pistol.png",
+            "damage" : 20,
+            "stackeable" : false,
+            "bullet" : "Basic_Bullet"
+        },
+        {
+            "id": 1,
+            "type" : "gun",
+            "name" : "Blue_Pistol",
+            "icon" : "res://Sprites/Items/Weapon/Blue_Pistol.png",
             "damage" : 20,
             "stackeable" : false,
             "bullet" : "Basic_Bullet"

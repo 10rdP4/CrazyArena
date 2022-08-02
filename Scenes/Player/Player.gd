@@ -41,7 +41,8 @@ func player_input() -> void:
 		drop_current_item()
 
 	if Input.is_action_just_pressed("left_click"):
-		item_main_action(get_current_item())
+		if inventory.size() > 0:
+			item_main_action(get_current_item())
 
 	invert_player_sprite(Global.get_global_mouse_position().x - Global.player.position.x < 0)
 
@@ -71,7 +72,7 @@ func item_main_action(item: Dictionary) -> void:
 func get_free_inventory_slots() -> int :
 	return max_items_inventory - inventory_length 
 
-func get_current_item():
+func get_current_item() -> Dictionary:
 	return inventory[current_item_pos]
 
 func get_shoot_point() -> Vector2:
@@ -87,6 +88,7 @@ func change_weapon_bullet() -> void:
 func change_weapon_visibility():
 	if get_current_item()["type"] == "gun":
 		change_weapon_bullet()
+		$Weapon/Sprite.texture = load(get_current_item()["icon"])
 		$Weapon.visible = true
 	else:
 		$Weapon.visible = false
@@ -95,9 +97,11 @@ func add_item_to_inventory(item: Dictionary) -> void:
 	inventory.append(item)
 	inventory_length = inventory.size()
 	set_current_item_label()
+	change_weapon_visibility()
 
 func invert_player_sprite(invert: bool) -> void:
 	$Sprite.flip_h = invert
+	$Weapon/Sprite.flip_v = invert
 
 func weapon_point_to_mouse() -> void:
 	var var_y :float= Global.get_global_mouse_position().y - Global.player.position.y

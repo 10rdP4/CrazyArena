@@ -38,6 +38,11 @@ _global_script_classes=[ {
 "class": "Player",
 "language": "GDScript",
 "path": "res://Scenes/Player/Player.gd"
+}, {
+"base": "Node2D",
+"class": "Weapon",
+"language": "GDScript",
+"path": "res://Scenes/Weapon/Weapon.gd"
 } ]
 _global_script_class_icons={
 "Arena": "",
@@ -45,7 +50,8 @@ _global_script_class_icons={
 "Body": "",
 "HUD": "",
 "Item": "",
-"Player": ""
+"Player": "",
+"Weapon": ""
 }
 
 [application]

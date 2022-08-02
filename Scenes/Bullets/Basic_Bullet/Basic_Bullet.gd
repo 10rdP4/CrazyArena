@@ -24,3 +24,6 @@ func _physics_process(__delta: float) -> void:
 # Signal
 func _on_VisibilityNotifier2D_screen_exited() -> void:
 	queue_free()
+
+func _ready() -> void:
+	self.rotation_degrees = rad2deg(atan2(fired_direction.y, fired_direction.x))
