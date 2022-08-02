@@ -10,11 +10,13 @@ var item_types  = {
 
 var item_type:String
 var item_id:int
+var pickable:bool = true
+var randomitem = true
 
 
 # Añadir item al inventario del jugador
 func _on_Item_body_entered(body:Node) -> void:
-	if body.name == "Player":
+	if body.name == "Player" and pickable:
 		if Global.player.get_free_inventory_slots() > 0:
 			Global.player.add_item_to_inventory(GlobalItemDatabase.get_item_by_id(item_type, item_id))
 			queue_free()
@@ -29,6 +31,18 @@ func random_item_config() -> void:
 	item_id = randi() % item_type_list.size()
 
 	$Icon.texture = load(GlobalItemDatabase.get_item_by_id(item_type, item_id)["icon"])
+
+func set_item_config(item: Dictionary) -> void:
+	item_type = item["type"]
+	item_id = item["id"]
+	pickable = false
+	position = Global.player.position
+	$Icon.texture = load(GlobalItemDatabase.get_item_by_id(item_type, item_id)["icon"])
 			
 func _ready() -> void:
-	random_item_config()
+	if randomitem:
+		random_item_config()
+		
+func _on_Timer_timeout() -> void:
+	pickable = true
+	pass

@@ -35,10 +35,8 @@ func shoot_bullet(direction: Vector2) -> void:
 
 func instance_item(_item: Dictionary) -> void:
 	var item :Item= PACKED_ITEM.instance()
-	item.item_type = _item["type"]
-	item.item_id = _item["id"]
-	item.position.x = player.position.x
-	item.position.y = player.position.y
+	item.randomitem = false
+	item.set_item_config(_item)
 	arena.add_child(item)
 
 func is_valid_node(node: Node) -> bool:

@@ -38,7 +38,8 @@ func player_input() -> void:
 		change_weapon_visibility()
 
 	if Input.is_action_just_pressed("drop_item"):
-		drop_current_item()
+		if inventory.size() > 0:
+			drop_current_item()
 
 	if Input.is_action_just_pressed("left_click"):
 		if inventory.size() > 0:
@@ -117,7 +118,6 @@ func weapon_point_to_mouse() -> void:
 func drop_current_item() -> void:
 	#inventory.remove(current_item_pos)
 	Global.instance_item(get_current_item())
-	print("DROPPING ITEMS NOT IMPLEMENTED YET")
 
 func _physics_process(delta):
 	delta = delta # esto es solo para que no me salga la advertencia de variable no usada
