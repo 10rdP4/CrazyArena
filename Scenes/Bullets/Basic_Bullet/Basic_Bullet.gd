@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 class_name Basic_Bullet
 
-var bullet_speed := 15.0
+var bullet_speed := 20.0
 var fired_direction: Vector2
 
 func move_and_collide_bullet() -> void:

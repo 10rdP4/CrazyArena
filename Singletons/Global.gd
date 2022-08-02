@@ -9,6 +9,7 @@ var snap_bodies := false
 var snap_bullets := false
 #-----------------------------------------
 
+var hud: HUD = null
 var arena: Arena = null
 var player: Player = null
 var current_bullet: PackedScene = null
@@ -22,11 +23,6 @@ func get_display_size() -> Vector2:
 
 
 # Funciones
-func spawn_player() -> void:
-	player = PACKED_PLAYER.instance()
-	player.global_position = get_display_size()/2 # - player.get_size()/2
-	arena.add_child(player, true)
-
 func change_current_bullet(bullet_type: String) -> void:
 	current_bullet = load("res://Scenes/Bullets/" + bullet_type + "/" + bullet_type + ".tscn")
 
@@ -49,8 +45,16 @@ func queue_free_if_valid(node: Node) -> void:
 	if is_valid_node(node):
 		node.queue_free()
 
-func init_nodes( __arena : Node ) -> void:
+
+func init_arena( __arena : Node ) -> void:
 	arena = __arena
 
+# Spawnear el jugador
+func spawn_player() -> void:
+	player = PACKED_PLAYER.instance()
+	player.global_position = get_display_size()/2 
+	arena.add_child(player, true)
+
+# Inicio de Juego
 func start_game() -> void:
 	spawn_player()

@@ -28,13 +28,7 @@ func random_item_config() -> void:
 	item_type_list = GlobalItemDatabase.get_item_list_by_type(item_type)
 	item_id = randi() % item_type_list.size()
 
-	match item_type:
-		item_types.FOOD:
-			self.find_node("Icon").modulate = Color.green
-		item_types.WEAPON:
-			self.find_node("Icon").modulate = Color.blue
-		item_types.ARMOR:
-			self.find_node("Icon").modulate = Color.gray
+	$Icon.texture = load(GlobalItemDatabase.get_item_by_id(item_type, item_id)["icon"])
 			
 func _ready() -> void:
 	random_item_config()

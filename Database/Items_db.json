@@ -5,14 +5,14 @@
             "id" : 0,
             "type" : "consumible",
             "name" : "Apple",
-            "icon" : "ruta",
+            "icon" : "res://icon.png",
             "stackeable" : true
         },
         {
             "id" : 1,
             "type" : "consumible",
             "name" : "Taco",
-            "icon" : "ruta",
+            "icon" : "res://icon.png",
             "stackeable" : true
         }
     ],
@@ -43,7 +43,7 @@
             "id" : 0,
             "type" : "equipable",
             "name" : "Helmet",
-            "icon" : "ruta",
+            "icon" : "res://icon.png",
             "protection" : 10,
             "stackeable" : false
         }

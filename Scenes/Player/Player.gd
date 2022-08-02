@@ -2,7 +2,7 @@ extends Body
 
 class_name Player
 
-var max_speed := 600
+var max_speed := 400
 var acceleration := 0.2
 var friction := 0.03
 var velocity := Vector2()
