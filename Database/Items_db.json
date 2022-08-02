@@ -25,7 +25,7 @@
             "icon" : "ruta",
             "damage" : 20,
             "stackeable" : false,
-            "bullet" : "basic_bullet"
+            "bullet" : "Basic_Bullet"
         }
     ],
     "armor" :

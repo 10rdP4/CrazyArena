@@ -40,6 +40,9 @@ func player_input() -> void:
 	if Input.is_action_just_pressed("drop_item"):
 		drop_current_item()
 
+	if Input.is_action_just_pressed("left_click"):
+		item_main_action(get_current_item())
+
 	invert_player_sprite(Global.get_global_mouse_position().x - Global.player.position.x < 0)
 
 func player_movement() -> void:
@@ -56,21 +59,34 @@ func player_movement() -> void:
 	if Global.snap_bodies:
 		position = position.round()
 
+func get_shoot_direction() -> Vector2:
+	# This class must extend Control/Node2D in order to call get_global_mouse_position()
+	return Global.player.position.direction_to(Global.get_global_mouse_position())
 
-#Getters
+func item_main_action(item: Dictionary) -> void:
+	if item["type"] == "gun":
+		Global.shoot_bullet(get_shoot_direction())
+	pass
+
 func get_free_inventory_slots() -> int :
 	return max_items_inventory - inventory_length 
 
 func get_current_item():
 	return inventory[current_item_pos]
 
-#Setters
+func get_shoot_point() -> Vector2:
+	return $Weapon/shoot_point.global_position
+
 func set_current_item_label():
 	var hud :HUD = $Camera/HUD
 	hud.find_node("Current_Item", true).text = str(current_item_pos) + " -> "+ get_current_item()["name"]
 
+func change_weapon_bullet() -> void:
+		Global.change_current_bullet(get_current_item()["bullet"])
+
 func change_weapon_visibility():
 	if get_current_item()["type"] == "gun":
+		change_weapon_bullet()
 		$Weapon.visible = true
 	else:
 		$Weapon.visible = false
