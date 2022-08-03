@@ -4,7 +4,7 @@
 [ext_resource path="res://Scenes/Player/Player.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/Camera/Camera.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Weapon/Weapon.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Sprites/Player/test_body.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/Player/player_32_32.png" type="Texture" id=5]
 
 [node name="Player" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
@@ -17,4 +17,3 @@ texture = ExtResource( 5 )
 [node name="Camera" parent="." index="2" instance=ExtResource( 3 )]
 
 [node name="Weapon" parent="." index="3" instance=ExtResource( 4 )]
-visible = false

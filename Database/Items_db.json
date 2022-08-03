@@ -5,7 +5,7 @@
             "id" : 0,
             "type" : "food",
             "name" : "Apple",
-            "icon" : "res://icon.png",
+            "icon" : "res://Sprites/Items/Food/Apple.png",
             "stackeable" : true
         },
         {
@@ -23,7 +23,6 @@
             "type" : "weapon",
             "name" : "Pistol",
             "icon" : "res://Sprites/Items/Weapon/Pistol.png",
-            "damage" : 20,
             "stackeable" : false,
             "bullet" : "Basic_Bullet"
         },
@@ -32,7 +31,6 @@
             "type" : "weapon",
             "name" : "Blue_Pistol",
             "icon" : "res://Sprites/Items/Weapon/Blue_Pistol.png",
-            "damage" : 20,
             "stackeable" : false,
             "bullet" : "Basic_Bullet"
         }

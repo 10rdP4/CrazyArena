@@ -116,6 +116,12 @@ func update_current_item() -> void:
 	set_current_item_label()
 	change_weapon_visibility()
 
+func take_damage(damage : int) -> void:
+	health -= damage
+
+func take_knockback(knockback: Vector2, intensity: float) -> void:
+	velocity = knockback * intensity
+
 func get_current_item() -> Dictionary:
 	return inventory[current_item_pos]
 

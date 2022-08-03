@@ -2,19 +2,24 @@ extends KinematicBody2D
 
 class_name Basic_Bullet
 
-var bullet_speed := 20.0
+var bullet_speed := 800.0
 var fired_direction: Vector2
+var damage := 50
 
 # modificar para producir efectos diferentes en cada colision
 func on_collision(collision: KinematicCollision2D) -> void:
 	var colliding_body: Object = collision.collider
-	if colliding_body.name == "Enemy":
-		Global.queue_free_if_valid(colliding_body)
+	if colliding_body is Enemy:
+		colliding_body.take_damage(damage)
+		Global.queue_free_if_valid(self)
+
+		if colliding_body.get_health() <= 0:
+			Global.queue_free_if_valid(colliding_body)
 
 
-func move_and_collide_bullet() -> void:
+func move_and_collide_bullet(delta: float) -> void:
 	var collision: KinematicCollision2D = \
-			move_and_collide(fired_direction * bullet_speed)
+			move_and_collide(fired_direction * bullet_speed * delta)
 	
 	if collision:
 		on_collision(collision)
@@ -24,10 +29,10 @@ func move_and_collide_bullet() -> void:
 
 # Signal
 func _on_VisibilityNotifier2D_screen_exited() -> void:
-	queue_free()
+	Global.queue_free_if_valid(self)
 
 func _physics_process(__delta: float) -> void:
-	move_and_collide_bullet()
+	move_and_collide_bullet(__delta)
 
 func _ready() -> void:
 	self.rotation_degrees = rad2deg(atan2(fired_direction.y, fired_direction.x))
