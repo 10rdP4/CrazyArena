@@ -35,13 +35,11 @@ func player_input() -> void:
 	# Inventory
 	if Input.is_action_just_released("scroll_up") and current_item_pos < inventory.size() - 1:
 		current_item_pos = current_item_pos + 1
-		set_current_item_label()
-		change_weapon_visibility()
+		update_current_item()
 
 	if Input.is_action_just_released("scroll_down") and current_item_pos > 0:
 		current_item_pos = current_item_pos - 1
-		set_current_item_label()
-		change_weapon_visibility()
+		update_current_item()
 
 	if Input.is_action_just_pressed("drop_item"):
 		if inventory.size() > 0:
@@ -56,11 +54,9 @@ func player_input() -> void:
 func player_movement() -> void:
 	if direction.length() > 0:
 		# acelerate
-		friction = 0.001
 		velocity = lerp(velocity, direction.normalized() * max_speed, acceleration)
 	else:
 		# decelerate
-		friction = 0.03
 		velocity = lerp(velocity, Vector2.ZERO, friction)
 	velocity = move_and_slide(velocity)
 
@@ -68,7 +64,6 @@ func player_movement() -> void:
 		position = position.round()
 
 func get_shoot_direction() -> Vector2:
-	# This class must extend Control/Node2D in order to call get_global_mouse_position()
 	return Global.player.position.direction_to(Global.get_global_mouse_position())
 
 func item_main_action(item: Dictionary) -> void:
@@ -83,16 +78,6 @@ func get_free_inventory_slots() -> int :
 			count_empty_slots += 1
 
 	return count_empty_slots
-
-func get_current_item() -> Dictionary:
-	return inventory[current_item_pos]
-
-func get_shoot_point() -> Vector2:
-	return $Weapon/shoot_point.global_position
-
-func set_current_item_label() -> void:
-	var hud :HUD = $Camera/HUD
-	hud.find_node("Current_Item", true).text = str(current_item_pos) + " -> "+ get_current_item()["name"]
 
 func change_weapon_bullet() -> void:
 		Global.change_current_bullet(get_current_item()["bullet"])
@@ -111,30 +96,35 @@ func add_item_to_inventory(item: Dictionary) -> void:
 		inventory[first_empty_slot] = item
 	else:
 		inventory.append(item)
-	set_current_item_label()
-	change_weapon_visibility()
+	update_current_item()
 
 func invert_player_sprite(invert: bool) -> void:
 	$Sprite.flip_h = invert
 	$Weapon/Sprite.flip_v = invert
 
 func weapon_point_to_mouse() -> void:
-	var var_y :float= Global.get_global_mouse_position().y - Global.player.position.y
-	var var_x :float= Global.get_global_mouse_position().x - Global.player.position.x
-	var correcion :int
-#-------------------------------------------------------------
-# Correciones para evitar que la division sea 0 y permitir el giro completo del arma
-	var_x = 1.0 if var_x < 1.0 and var_x > -1.0 else var_x
-	correcion = 180 if var_x < 0 else 0
-#-------------------------------------------------------------
-	$Weapon.rotation_degrees = rad2deg(atan( var_y / var_x )) + correcion
+	var rads = Global.player.position.angle_to_point(Global.get_global_mouse_position())
+	$Weapon.rotation_degrees = rad2deg(rads) - 180 
 
 func drop_current_item() -> void:
 	if get_current_item()["name"] != "empty":
 		Global.instance_item(get_current_item())
-		inventory[inventory.find(get_current_item())] = empty_item
-		set_current_item_label()
-		change_weapon_visibility()
+		inventory[current_item_pos] = empty_item
+		update_current_item()
+
+func update_current_item() -> void:
+	set_current_item_label()
+	change_weapon_visibility()
+
+func get_current_item() -> Dictionary:
+	return inventory[current_item_pos]
+
+func get_shoot_point() -> Vector2:
+	return $Weapon/shoot_point.global_position
+
+func set_current_item_label() -> void:
+	var hud :HUD = $Camera/HUD
+	hud.find_node("Current_Item", true).text = str(current_item_pos) + " -> "+ get_current_item()["name"]
 
 func _physics_process(delta):
 	delta = delta # esto es solo para que no me salga la advertencia de variable no usada
@@ -147,3 +137,4 @@ func _physics_process(delta):
 func _ready() -> void:
 	for i in max_items_inventory:
 		inventory.append(empty_item)
+	update_current_item()
