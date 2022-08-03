@@ -38,11 +38,11 @@ func set_item_config(item: Dictionary) -> void:
 	pickable = false
 	position = Global.player.position
 	$Icon.texture = load(GlobalItemDatabase.get_item_by_id(item_type, item_id)["icon"])
-			
-func _ready() -> void:
-	if randomitem:
-		random_item_config()
 		
 func _on_Timer_timeout() -> void:
 	pickable = true
 	pass
+			
+func _ready() -> void:
+	if randomitem:
+		random_item_config()

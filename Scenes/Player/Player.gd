@@ -11,8 +11,14 @@ var direction = Vector2()
 var health := 200
 var inventory = []
 var max_items_inventory := 5
-var inventory_length := 0
 var current_item_pos := 0
+
+var empty_item := {
+			"id" : -1,
+			"type" : "null",
+			"name" : "empty",
+			"icon" : "res://icon.png",
+		}
 
 func player_input() -> void:
 	direction = Vector2()
@@ -27,7 +33,7 @@ func player_input() -> void:
 		direction.y -= 1
 	
 	# Inventory
-	if Input.is_action_just_released("scroll_up") and current_item_pos < inventory_length - 1:
+	if Input.is_action_just_released("scroll_up") and current_item_pos < inventory.size() - 1:
 		current_item_pos = current_item_pos + 1
 		set_current_item_label()
 		change_weapon_visibility()
@@ -71,7 +77,12 @@ func item_main_action(item: Dictionary) -> void:
 	pass
 
 func get_free_inventory_slots() -> int :
-	return max_items_inventory - inventory_length 
+	var count_empty_slots = 0
+	for item in inventory:
+		if item["name"] == "empty":
+			count_empty_slots += 1
+
+	return count_empty_slots
 
 func get_current_item() -> Dictionary:
 	return inventory[current_item_pos]
@@ -79,7 +90,7 @@ func get_current_item() -> Dictionary:
 func get_shoot_point() -> Vector2:
 	return $Weapon/shoot_point.global_position
 
-func set_current_item_label():
+func set_current_item_label() -> void:
 	var hud :HUD = $Camera/HUD
 	hud.find_node("Current_Item", true).text = str(current_item_pos) + " -> "+ get_current_item()["name"]
 
@@ -95,8 +106,11 @@ func change_weapon_visibility():
 		$Weapon.visible = false
 
 func add_item_to_inventory(item: Dictionary) -> void:
-	inventory.append(item)
-	inventory_length = inventory.size()
+	var first_empty_slot = inventory.find(empty_item)
+	if first_empty_slot != -1:
+		inventory[first_empty_slot] = item
+	else:
+		inventory.append(item)
 	set_current_item_label()
 	change_weapon_visibility()
 
@@ -116,8 +130,11 @@ func weapon_point_to_mouse() -> void:
 	$Weapon.rotation_degrees = rad2deg(atan( var_y / var_x )) + correcion
 
 func drop_current_item() -> void:
-	#inventory.remove(current_item_pos)
-	Global.instance_item(get_current_item())
+	if get_current_item()["name"] != "empty":
+		Global.instance_item(get_current_item())
+		inventory[inventory.find(get_current_item())] = empty_item
+		set_current_item_label()
+		change_weapon_visibility()
 
 func _physics_process(delta):
 	delta = delta # esto es solo para que no me salga la advertencia de variable no usada
@@ -127,3 +144,6 @@ func _physics_process(delta):
 	if $Weapon.visible == true:
 		weapon_point_to_mouse()
 
+func _ready() -> void:
+	for i in max_items_inventory:
+		inventory.append(empty_item)
