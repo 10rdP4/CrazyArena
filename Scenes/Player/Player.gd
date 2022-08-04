@@ -113,6 +113,11 @@ func update_current_item() -> void:
 
 func take_damage(damage : int) -> void:
 	health -= damage
+	set_current_health_label()
+
+func restore_helth(cure: int) -> void:
+	health += cure
+	set_current_health_label()
 
 func take_knockback(knockback: Vector2, intensity: float) -> void:
 	velocity = knockback * intensity
@@ -127,6 +132,10 @@ func set_current_item_label() -> void:
 	var hud :HUD = $Camera/HUD
 	hud.find_node("Current_Item", true).text = str(current_item_pos) + " -> "+ get_current_item()["name"]
 
+func set_current_health_label() -> void:
+	var hud :HUD = $Camera/HUD
+	hud.find_node("Health_Points", true).text = "HP: " + str(health) 
+
 func _physics_process(delta):
 	delta = delta # esto es solo para que no me salga la advertencia de variable no usada
 	player_input()
@@ -139,3 +148,4 @@ func _ready() -> void:
 	for i in max_items_inventory:
 		inventory.append(empty_item)
 	update_current_item()
+	set_current_health_label()
