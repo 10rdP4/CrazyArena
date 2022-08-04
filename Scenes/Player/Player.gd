@@ -107,6 +107,10 @@ func drop_current_item() -> void:
 		inventory[current_item_pos] = empty_item
 		update_current_item()
 
+func remove_current_item() -> void:
+	inventory[current_item_pos] = empty_item
+	update_current_item()
+
 func update_current_item() -> void:
 	set_current_item_label()
 	change_weapon_visibility()

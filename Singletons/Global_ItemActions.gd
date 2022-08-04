@@ -25,6 +25,9 @@ func item_main_action(item: Dictionary) -> void:
 	match item["type"]:
 		"weapon":
 			shoot_bullet(get_shoot_direction())
+		"food":
+			Global.player.restore_helth(item["restore"])
+			Global.player.remove_current_item()
 		"spwn":
 			instance_entity(item["entity"])
 		_:

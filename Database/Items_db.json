@@ -6,14 +6,16 @@
             "type" : "food",
             "name" : "Apple",
             "icon" : "res://Sprites/Items/Food/Apple.png",
-            "stackeable" : true
+            "stackeable" : true,
+            "restore" : 20
         },
         {
             "id" : 1,
             "type" : "food",
             "name" : "Taco",
             "icon" : "res://icon.png",
-            "stackeable" : true
+            "stackeable" : true,
+            "restore" : 50
         }
     ],
     "weapon" :
