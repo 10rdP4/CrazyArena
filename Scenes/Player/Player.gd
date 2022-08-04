@@ -114,6 +114,8 @@ func update_current_item() -> void:
 func take_damage(damage : int) -> void:
 	health -= damage
 	set_current_health_label()
+	if health <= 0:
+		Global.end_game()
 
 func restore_helth(cure: int) -> void:
 	health += cure
@@ -136,8 +138,8 @@ func set_current_health_label() -> void:
 	var hud :HUD = $Camera/HUD
 	hud.find_node("Health_Points", true).text = "HP: " + str(health) 
 
-func _physics_process(delta):
-	delta = delta # esto es solo para que no me salga la advertencia de variable no usada
+func _physics_process(_delta):
+	check_game_over()
 	player_input()
 	player_movement()
 

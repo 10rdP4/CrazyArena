@@ -10,7 +10,10 @@ var snap_bodies := false
 var snap_bullets := false
 #-----------------------------------------
 
+var is_game_over := false
+
 var hud: HUD = null
+var retry_menu = null
 var arena: Arena = null
 var player: Player = null
 var current_bullet: PackedScene = null
@@ -42,12 +45,33 @@ func queue_free_if_valid(node: Node) -> void:
 func init_arena( __arena : Node ) -> void:
 	arena = __arena
 
+func init_retry_menu(retry: Node) -> void:
+	retry_menu = retry
+
 # Spawnear el jugador
 func spawn_player() -> void:
 	player = PACKED_PLAYER.instance()
 	player.global_position = get_display_size()/2 
 	arena.add_child(player, true)
 
+func restart_game() ->  void:
+	get_tree().reload_current_scene()
+
 # Inicio de Juego
 func start_game() -> void:
+	is_game_over = false
 	spawn_player()
+
+func end_game() -> void:
+	retry_menu.visible = true
+	is_game_over = true
+
+func _input(__event: InputEvent) -> void:
+	if __event.is_action_pressed("ui_cancel"):
+		get_tree().quit()
+	# custom input map for RETRY/QUIT (in Project -> Project Settings -> Input Map [tab])	
+	if is_game_over:
+		if __event.is_action_pressed("retry"):
+			restart_game()
+		if __event.is_action_pressed("quit"):
+			get_tree().quit()

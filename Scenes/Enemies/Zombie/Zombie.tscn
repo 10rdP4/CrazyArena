@@ -5,3 +5,9 @@
 
 [node name="Zombie" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+
+[node name="AttackTimer" parent="." index="2"]
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="AttackTimer" to="." method="_on_AttackTimer_timeout"]
