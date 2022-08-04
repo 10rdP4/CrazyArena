@@ -5,7 +5,8 @@ class_name Item
 var item_types  = {
 	FOOD = "food",
 	WEAPON = "weapon",
-	ARMOR = "armor"
+	ARMOR = "armor",
+	SPWN = "spwn"
 }
 
 var item_type:String

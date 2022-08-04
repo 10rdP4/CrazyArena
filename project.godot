@@ -77,6 +77,7 @@ config/icon="res://icon.png"
 Global="*res://Singletons/Global.gd"
 GlobalItemDatabase="*res://Singletons/Global_ItemDatabase.gd"
 GlobalDataParser="*res://Singletons/Global_DataParser.gd"
+GlobalItemActions="*res://Singletons/Global_ItemActions.gd"
 
 [display]
 

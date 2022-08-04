@@ -63,13 +63,8 @@ func player_movement() -> void:
 	if Global.snap_bodies:
 		position = position.round()
 
-func get_shoot_direction() -> Vector2:
-	return Global.player.position.direction_to(Global.get_global_mouse_position())
-
 func item_main_action(item: Dictionary) -> void:
-	if item["type"] == "weapon":
-		Global.shoot_bullet(get_shoot_direction())
-	pass
+	GlobalItemActions.item_main_action(item)
 
 func get_free_inventory_slots() -> int :
 	var count_empty_slots = 0
@@ -108,7 +103,7 @@ func weapon_point_to_mouse() -> void:
 
 func drop_current_item() -> void:
 	if get_current_item()["name"] != "empty":
-		Global.instance_item(get_current_item())
+		GlobalItemActions.instance_item(get_current_item())
 		inventory[current_item_pos] = empty_item
 		update_current_item()
 

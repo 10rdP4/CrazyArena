@@ -42,8 +42,19 @@
             "type" : "armor",
             "name" : "Helmet",
             "icon" : "res://icon.png",
-            "protection" : 10,
-            "stackeable" : false
+            "stackeable" : false,
+            "protection" : 10
+        }
+    ],
+    "spwn" :
+    [
+        {
+            "id" : 0,
+            "type" : "spwn",
+            "name" : "Zombie_Spawn_Egg",
+            "icon" : "res://icon.png",
+            "stackeable" : true,
+            "entity" : "res://Scenes/Enemies/Zombie/Zombie.tscn"
         }
     ]
 

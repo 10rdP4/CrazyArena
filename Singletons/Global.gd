@@ -22,22 +22,9 @@ func get_display_size() -> Vector2:
 	var __display_height: int = ProjectSettings.get_setting("display/window/size/height")
 	return Vector2(__display_width, __display_height)
 
-
 # Funciones
 func change_current_bullet(bullet_type: String) -> void:
 	current_bullet = load("res://Scenes/Bullets/" + bullet_type + "/" + bullet_type + ".tscn")
-
-func shoot_bullet(direction: Vector2) -> void:
-	var bullet := current_bullet.instance()
-	bullet.fired_direction = direction
-	bullet.position = player.get_shoot_point()
-	arena.add_child(bullet, true)
-
-func instance_item(_item: Dictionary) -> void:
-	var item :Item= PACKED_ITEM.instance()
-	item.randomitem = false
-	item.set_item_config(_item)
-	arena.add_child(item)
 
 func is_valid_node(node: Node) -> bool:
 	if !node:
@@ -51,7 +38,6 @@ func is_valid_node(node: Node) -> bool:
 func queue_free_if_valid(node: Node) -> void:
 	if is_valid_node(node):
 		node.queue_free()
-
 
 func init_arena( __arena : Node ) -> void:
 	arena = __arena
