@@ -9,10 +9,10 @@ var item_types  = {
 	SPWN = "spwn"
 }
 
-var item_type:String
-var item_id:int
+export var item_type:String
+export var item_id:int
+export var randomitem = true
 var pickable:bool = true
-var randomitem = true
 
 
 # Añadir item al inventario del jugador
@@ -47,3 +47,4 @@ func _on_Timer_timeout() -> void:
 func _ready() -> void:
 	if randomitem:
 		random_item_config()
+	$Icon.texture = load(GlobalItemDatabase.get_item_by_id(item_type, item_id)["icon"])

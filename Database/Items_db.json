@@ -32,7 +32,7 @@
             "name" : "Blue_Pistol",
             "icon" : "res://Sprites/Items/Weapon/Blue_Pistol.png",
             "stackeable" : false,
-            "bullet" : "Basic_Bullet"
+            "bullet" : "Blue_Bullet"
         }
     ],
     "armor" :
