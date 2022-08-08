@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scenes/Main/Main.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Arena/Arena.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Item/Item.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Menu/Restart/Restart.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Tree/Tree.tscn" type="PackedScene" id=5]
 
 [node name="Main" type="Control"]
 anchor_right = 1.0
@@ -32,6 +33,9 @@ randomitem = false
 position = Vector2( 88, 344 )
 item_type = "food"
 randomitem = false
+
+[node name="Tree" parent="Arena" instance=ExtResource( 5 )]
+position = Vector2( 90, -132 )
 
 [node name="Restart" parent="." instance=ExtResource( 4 )]
 visible = false

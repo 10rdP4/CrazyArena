@@ -11,8 +11,6 @@ func _on_collision(collision: KinematicCollision2D) -> void:
 	var colliding_body: Object = collision.collider
 	if colliding_body is Enemy:
 		colliding_body.take_damage(damage)
-		Global.queue_free_if_valid(self)
-
 		if colliding_body.get_health() <= 0:
 			Global.queue_free_if_valid(colliding_body)
 
@@ -23,6 +21,7 @@ func move_and_collide_bullet(delta: float) -> void:
 	
 	if collision:
 		_on_collision(collision)
+		Global.queue_free_if_valid(self)
 
 	if Global.snap_bullets:
 		position = position.round()

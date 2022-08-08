@@ -9,7 +9,7 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "TileMap",
+"base": "Node2D",
 "class": "Arena",
 "language": "GDScript",
 "path": "res://Scenes/Arena/Arena.gd"
