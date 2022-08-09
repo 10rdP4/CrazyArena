@@ -44,6 +44,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scenes/Item/Item.gd"
 }, {
+"base": "Control",
+"class": "ItemInventory",
+"language": "GDScript",
+"path": "res://Scenes/HUD/ItemInventory/ItemInventory.gd"
+}, {
 "base": "Body",
 "class": "Player",
 "language": "GDScript",
@@ -72,6 +77,7 @@ _global_script_class_icons={
 "Enemy": "",
 "HUD": "",
 "Item": "",
+"ItemInventory": "",
 "Player": "",
 "Retry": "",
 "Weapon": "",

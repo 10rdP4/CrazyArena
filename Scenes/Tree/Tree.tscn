@@ -20,7 +20,6 @@ extents = Vector2( 11, 5 )
 
 [node name="Tree" type="StaticBody2D"]
 scale = Vector2( 2, 2 )
-z_index = 1
 __meta__ = {
 "_edit_group_": true
 }

@@ -17,7 +17,7 @@ var empty_item := {
 			"id" : -1,
 			"type" : "null",
 			"name" : "empty",
-			"icon" : "res://icon.png",
+			"icon" : "res://Sprites/Items/empty_item.png",
 		}
 
 func player_input() -> void:
@@ -114,6 +114,7 @@ func remove_current_item() -> void:
 func update_current_item() -> void:
 	set_current_item_label()
 	change_weapon_visibility()
+	find_node("HUD").update_inventory()
 
 func take_damage(damage : int) -> void:
 	health -= damage
@@ -136,7 +137,8 @@ func get_shoot_point() -> Vector2:
 
 func set_current_item_label() -> void:
 	var hud :HUD = $Camera/HUD
-	hud.find_node("Current_Item", true).text = str(current_item_pos) + " -> "+ get_current_item()["name"]
+	var name = get_current_item()["name"]
+	hud.find_node("Current_Item", true).text = name if name != "empty" else ""
 
 func set_current_health_label() -> void:
 	var hud :HUD = $Camera/HUD
