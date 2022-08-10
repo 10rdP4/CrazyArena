@@ -51,7 +51,7 @@ func init_retry_menu(retry: Node) -> void:
 # Spawnear el jugador
 func spawn_player() -> void:
 	player = PACKED_PLAYER.instance()
-	player.global_position = get_display_size()/2 
+	player.global_position = Vector2.ZERO
 	arena.add_child(player, true)
 
 func restart_game() ->  void:
