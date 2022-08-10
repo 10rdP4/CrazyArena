@@ -151,6 +151,9 @@ func get_current_item() -> Dictionary:
 func get_shoot_point() -> Vector2:
 	return $Weapon/shoot_point.global_position
 
+func get_speed() -> float:
+	return sqrt(pow(velocity.x,2) + pow(velocity.y,2))
+
 func set_current_item_label() -> void:
 	var name = get_current_item()["name"]
 	hud.find_node("Current_Item", true).text = name if name != "empty" else ""
@@ -167,7 +170,6 @@ func _physics_process(_delta):
 		weapon_point_to_mouse()
 
 	if not can_roll:
-		print($RollCooldown.time_left * 60)
 		hud.increase_rollbar($RollCooldown.time_left)
 
 func _ready() -> void:
