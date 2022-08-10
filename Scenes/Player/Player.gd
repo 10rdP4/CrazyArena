@@ -7,6 +7,11 @@ var acceleration := 0.2
 var friction := 0.06
 var velocity := Vector2()
 var direction = Vector2()
+var can_roll := true
+var rolling := false
+
+
+var hud :HUD
 
 var health := 200
 var inventory = []
@@ -42,12 +47,15 @@ func player_input() -> void:
 		update_current_item()
 
 	if Input.is_action_just_pressed("drop_item"):
-		if inventory.size() > 0:
-			drop_current_item()
-
+		drop_current_item()
+		
 	if Input.is_action_just_pressed("left_click"):
 		if inventory.size() > 0:
 			item_main_action(get_current_item())
+
+	if Input.is_action_pressed("roll"):
+		if can_roll:
+			player_roll()
 
 	invert_player_sprite(Global.get_global_mouse_position().x - Global.player.position.x < 0)
 
@@ -62,6 +70,14 @@ func player_movement() -> void:
 
 	if Global.snap_bodies:
 		position = position.round()
+
+func player_roll() -> void:
+	max_speed = 400
+	can_roll = false
+	rolling = true
+	hud.roll_bar_to_zero()
+	$RollTimer.start()
+	$RollCooldown.start()
 
 func item_main_action(item: Dictionary) -> void:
 	GlobalItemActions.item_main_action(item)
@@ -136,12 +152,10 @@ func get_shoot_point() -> Vector2:
 	return $Weapon/shoot_point.global_position
 
 func set_current_item_label() -> void:
-	var hud :HUD = $Camera/HUD
 	var name = get_current_item()["name"]
 	hud.find_node("Current_Item", true).text = name if name != "empty" else ""
 
 func set_current_health_label() -> void:
-	var hud :HUD = $Camera/HUD
 	hud.find_node("Health_Points", true).text = "HP: " + str(health) 
 
 func _physics_process(_delta):
@@ -152,8 +166,24 @@ func _physics_process(_delta):
 	if $Weapon.visible == true:
 		weapon_point_to_mouse()
 
+	if not can_roll:
+		print($RollCooldown.time_left * 60)
+		hud.increase_rollbar($RollCooldown.time_left)
+
 func _ready() -> void:
 	for i in max_items_inventory:
 		inventory.append(empty_item)
+	hud = $Camera/HUD
 	update_current_item()
 	set_current_health_label()
+
+
+func _on_RollTimer_timeout() -> void:
+	max_speed = 200
+	rolling = false
+	pass # Replace with function body.
+
+
+func _on_RollCooldown_timeout() -> void:
+	can_roll = true
+	pass # Replace with function body.

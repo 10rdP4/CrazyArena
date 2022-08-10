@@ -25,3 +25,14 @@ texture = ExtResource( 5 )
 [node name="Camera" parent="." index="2" instance=ExtResource( 3 )]
 
 [node name="Weapon" parent="." index="3" instance=ExtResource( 4 )]
+
+[node name="RollTimer" type="Timer" parent="." index="4"]
+wait_time = 0.4
+one_shot = true
+
+[node name="RollCooldown" type="Timer" parent="." index="5"]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="timeout" from="RollTimer" to="." method="_on_RollTimer_timeout"]
+[connection signal="timeout" from="RollCooldown" to="." method="_on_RollCooldown_timeout"]
