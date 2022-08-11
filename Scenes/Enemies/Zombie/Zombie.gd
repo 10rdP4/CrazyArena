@@ -11,9 +11,10 @@ func zombie_movement() -> void:
 	dir_to_player = global_position.direction_to(Global.player.global_position)
 	if Global.snap_bodies:
 		position = position.round()
+	move_and_slide(dir_to_player * speed)
 
-func check_collision(delta : float):
-	var collision :KinematicCollision2D = move_and_collide(dir_to_player * speed * delta)
+func check_collision():
+	var collision :KinematicCollision2D = get_last_slide_collision()
 	if collision and can_attack:
 		var collider_body :Object = collision.collider
 		if collider_body is Player:
@@ -26,7 +27,7 @@ func check_collision(delta : float):
 func _physics_process(delta: float) -> void:
 	check_game_over()
 	zombie_movement()
-	check_collision(delta)
+	check_collision()
 	pass
 
 func _ready() -> void:
