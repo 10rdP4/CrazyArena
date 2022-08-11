@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/boceto_mapa.jpg-dec32a117d910d78fb14295ade1f0249.stex"
+path="res://.import/mapa.jpg-5ba0d79aefe12297d9fcc7db5a45f7ab.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Map/boceto_mapa.jpg"
-dest_files=[ "res://.import/boceto_mapa.jpg-dec32a117d910d78fb14295ade1f0249.stex" ]
+source_file="res://Sprites/Map/mapa.jpg"
+dest_files=[ "res://.import/mapa.jpg-5ba0d79aefe12297d9fcc7db5a45f7ab.stex" ]
 
 [params]
 

@@ -6,6 +6,7 @@ var item_types  = {
 	FOOD = "food",
 	WEAPON = "weapon",
 	ARMOR = "armor",
+	POTION = "potion",
 	SPWN = "spwn"
 }
 

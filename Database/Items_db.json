@@ -18,6 +18,30 @@
             "restore" : 50
         }
     ],
+    "potion" :
+    [
+        {
+            "id" : 0,
+            "type" : "potion",
+            "name" : "blue_potion",
+            "icon" : "res://Sprites/Items/Potions/blue_potion.png",
+            "stackeable" : true
+        },
+        {
+            "id" : 1,
+            "type" : "potion",
+            "name" : "red_potion",
+            "icon" : "res://Sprites/Items/Potions/red_potion.png",
+            "stackeable" : true
+        },
+        {
+            "id" : 2,
+            "type" : "potion",
+            "name" : "yellow_potion",
+            "icon" : "res://Sprites/Items/Potions/yellow_potion.png",
+            "stackeable" : true
+        }
+    ],
     "weapon" :
     [
         {
