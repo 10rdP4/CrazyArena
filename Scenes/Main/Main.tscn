@@ -28,6 +28,7 @@ randomitem = false
 [node name="Item3" parent="Arena" instance=ExtResource( 3 )]
 position = Vector2( 64, -200 )
 item_type = "spwn"
+item_id = 1
 randomitem = false
 
 [node name="Item4" parent="Arena" instance=ExtResource( 3 )]

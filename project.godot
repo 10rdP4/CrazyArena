@@ -65,6 +65,11 @@ _global_script_classes=[ {
 "path": "res://Scenes/Weapon/Weapon.gd"
 }, {
 "base": "Enemy",
+"class": "WormBall",
+"language": "GDScript",
+"path": "res://Scenes/Enemies/WormBall/WormBall.gd"
+}, {
+"base": "Enemy",
 "class": "Zombie",
 "language": "GDScript",
 "path": "res://Scenes/Enemies/Zombie/Zombie.gd"
@@ -81,6 +86,7 @@ _global_script_class_icons={
 "Player": "",
 "Retry": "",
 "Weapon": "",
+"WormBall": "",
 "Zombie": ""
 }
 

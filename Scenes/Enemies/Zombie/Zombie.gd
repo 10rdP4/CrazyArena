@@ -5,6 +5,7 @@ class_name Zombie
 var dir_to_player
 
 var damage = 15
+var knockback = 150
 var can_attack := true
 
 func zombie_movement() -> void:
@@ -18,10 +19,10 @@ func check_collision():
 	if collision and can_attack:
 		var collider_body :Object = collision.collider
 		if collider_body is Player:
-			collider_body.take_damage(15)
+			collider_body.take_damage(damage)
 			can_attack = false
 			$AttackTimer.start()
-			collider_body.take_knockback(dir_to_player, 150)
+			collider_body.take_knockback(dir_to_player, knockback)
 			
 
 func _physics_process(delta: float) -> void:

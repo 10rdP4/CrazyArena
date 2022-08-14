@@ -81,6 +81,14 @@
             "icon" : "res://icon.png",
             "stackeable" : true,
             "entity" : "res://Scenes/Enemies/Zombie/Zombie.tscn"
+        },
+        {
+            "id" : 1,
+            "type" : "spwn",
+            "name" : "WormBall_Spawn_Egg",
+            "icon" : "res://icon.png",
+            "stackeable" : true,
+            "entity" : "res://Scenes/Enemies/WormBall/WormBall.tscn"
         }
     ]
 
