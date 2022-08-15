@@ -30,10 +30,12 @@ func player_input() -> void:
 	# Movement
 	if Input.is_action_pressed('ui_right'):
 		direction.x += 1
-	if Input.is_action_pressed('ui_down'):
-		direction.y += 1
+		invert_player_sprite(false)
 	if Input.is_action_pressed('ui_left'):
 		direction.x -= 1
+		invert_player_sprite(true)
+	if Input.is_action_pressed('ui_down'):
+		direction.y += 1
 	if Input.is_action_pressed('ui_up'):
 		direction.y -= 1
 	
@@ -57,7 +59,6 @@ func player_input() -> void:
 		if can_roll:
 			player_roll()
 
-	invert_player_sprite(Global.get_global_mouse_position().x - Global.player.position.x < 0)
 
 func player_movement() -> void:
 	if direction.length() > 0:
@@ -66,6 +67,12 @@ func player_movement() -> void:
 	else:
 		# decelerate
 		velocity = lerp(velocity, Vector2.ZERO, friction)
+	if !rolling: 
+		if get_speed() < 40:
+			$Sprite.play("idle")
+		else:
+			$Sprite.play("walk")
+	
 	velocity = move_and_slide(velocity)
 
 	if Global.snap_bodies:
@@ -75,9 +82,12 @@ func player_roll() -> void:
 	max_speed = 400
 	can_roll = false
 	rolling = true
+	$CollisionShape2D.shape.height = 10
+	$CollisionShape2D.position.y = 9
 	hud.roll_bar_to_zero()
 	$RollTimer.start()
 	$RollCooldown.start()
+	$Sprite.play("roll")
 
 func item_main_action(item: Dictionary) -> void:
 	GlobalItemActions.item_main_action(item)
@@ -111,7 +121,6 @@ func add_item_to_inventory(item: Dictionary) -> void:
 
 func invert_player_sprite(invert: bool) -> void:
 	$Sprite.flip_h = invert
-	$Weapon/Sprite.flip_v = invert
 
 func weapon_point_to_mouse() -> void:
 	var rads = Global.player.position.angle_to_point(Global.get_global_mouse_position())
@@ -179,13 +188,12 @@ func _ready() -> void:
 	update_current_item()
 	set_current_health_label()
 
-
 func _on_RollTimer_timeout() -> void:
 	max_speed = 200
 	rolling = false
-	pass # Replace with function body.
-
+	$CollisionShape2D.shape.height = 29
+	$CollisionShape2D.position.y = 0
+	$Sprite.play("idle")
 
 func _on_RollCooldown_timeout() -> void:
 	can_roll = true
-	pass # Replace with function body.
