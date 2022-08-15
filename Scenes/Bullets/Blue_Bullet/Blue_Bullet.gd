@@ -3,6 +3,7 @@ extends Basic_Bullet
 class_name Blue_Bullet
 
 func _on_collision(collision: KinematicCollision2D) -> void:
+	print("blue_bullet collision")
 	var colliding_body: Object = collision.collider
 	if colliding_body is Enemy:
 		colliding_body.take_damage(damage)
