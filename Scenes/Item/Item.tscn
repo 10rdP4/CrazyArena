@@ -1,10 +1,16 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scenes/Item/Item.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Items/Weapon/Pistol.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 12, 12 )
+
+[sub_resource type="Curve2D" id=2]
+resource_local_to_scene = true
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 12, 3.82609, 0, 0, 0, 0, 12, 22.9565, 0, 0, 0, 0, 12, 3.82609 )
+}
 
 [node name="Item" type="Area2D"]
 script = ExtResource( 1 )
@@ -13,15 +19,28 @@ script = ExtResource( 1 )
 position = Vector2( 12, 12 )
 shape = SubResource( 1 )
 
-[node name="Icon" type="Sprite" parent="."]
-position = Vector2( 12, 12 )
-scale = Vector2( 2, 2 )
-texture = ExtResource( 2 )
-
 [node name="Timer" type="Timer" parent="."]
 wait_time = 1.5
 one_shot = true
 autostart = true
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2( 9.53674e-07, 5 )
+scale = Vector2( 1, 0.522727 )
+curve = SubResource( 2 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2( 12, 36 )
+rotation = -1.5708
+rotate = false
+cubic_interp = false
+lookahead = 0.001
+
+[node name="Icon" type="Sprite" parent="Path2D/PathFollow2D"]
+position = Vector2( 22.6087, -4.76837e-06 )
+rotation = 1.5708
+scale = Vector2( 2, 3.82609 )
+texture = ExtResource( 2 )
 
 [connection signal="body_entered" from="." to="." method="_on_Item_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

@@ -25,27 +25,33 @@ func _on_Item_body_entered(body:Node) -> void:
 		#else:
 			# Inventario Lleno	
 
+func change_icon_texture() -> void:
+	find_node("Icon").texture = load(GlobalItemDatabase.get_item_by_id(item_type, item_id)["icon"])
+
+
 func random_item_config() -> void:
 	var item_type_list: Array
 	randomize()
 	item_type = item_types.get(item_types.keys()[randi() % item_types.size()])
 	item_type_list = GlobalItemDatabase.get_item_list_by_type(item_type)
 	item_id = randi() % item_type_list.size()
-
-	$Icon.texture = load(GlobalItemDatabase.get_item_by_id(item_type, item_id)["icon"])
+	change_icon_texture()
 
 func set_item_config(item: Dictionary) -> void:
 	item_type = item["type"]
 	item_id = item["id"]
 	pickable = false
 	position = Global.player.position
-	$Icon.texture = load(GlobalItemDatabase.get_item_by_id(item_type, item_id)["icon"])
+	change_icon_texture()
 		
 func _on_Timer_timeout() -> void:
 	pickable = true
 	pass
+
+func _process(delta) -> void:
+	$Path2D/PathFollow2D.offset += 25 * delta
 			
 func _ready() -> void:
 	if randomitem:
 		random_item_config()
-	$Icon.texture = load(GlobalItemDatabase.get_item_by_id(item_type, item_id)["icon"])
+	change_icon_texture()
