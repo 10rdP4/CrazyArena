@@ -5,8 +5,8 @@ class_name Enemy
 var health
 var speed
 
-func take_damage(damage: int) -> void:
-	health = health - damage
+func take_damage(damage_taken: int) -> void:
+	health = health - damage_taken
 	$Sprite.material.set_shader_param("flash_modifier", 0.4)
 	$FlashTimer.start()
 
