@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scenes/Enemy/Enemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Enemies/Zombie/Zombie.gd" type="Script" id=2]
 [ext_resource path="res://shaders/flash_on_hit.tres" type="Shader" id=3]
+[ext_resource path="res://icon.png" type="Texture" id=4]
 
 [sub_resource type="CircleShape2D" id=2]
 radius = 21.0238
@@ -13,6 +14,14 @@ shader = ExtResource( 3 )
 shader_param/flash_color = Color( 1, 1, 1, 1 )
 shader_param/flash_modifier = 0.0
 
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
 [node name="Zombie" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 
@@ -21,6 +30,7 @@ shape = SubResource( 2 )
 
 [node name="Sprite" parent="." index="1"]
 material = SubResource( 3 )
+frames = SubResource( 4 )
 
 [node name="AttackTimer" parent="." index="2"]
 one_shot = true

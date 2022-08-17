@@ -3,7 +3,7 @@
 [ext_resource path="res://Sprites/Map/Flowers/blue_fungi.png" type="Texture" id=1]
 [ext_resource path="res://Sprites/Map/light.png" type="Texture" id=2]
 
-[node name="Light2D" type="Light2D"]
+[node name="Flower" type="Light2D"]
 texture = ExtResource( 2 )
 texture_scale = 0.16
 color = Color( 0, 0.882353, 1, 1 )

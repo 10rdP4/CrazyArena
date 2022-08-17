@@ -8,13 +8,9 @@ var damage := 100
 var can_collide := true
 
 func _on_collision(collision: KinematicCollision2D) -> void:
-	print("basic_bullet collision")
 	var colliding_body: Object = collision.collider
 	if colliding_body is Enemy:
 		colliding_body.take_damage(damage)
-		if colliding_body.get_health() <= 0:
-			Global.queue_free_if_valid(colliding_body)
-
 
 func move_and_collide_bullet(delta: float) -> void:
 	var collision: KinematicCollision2D = \

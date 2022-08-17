@@ -54,15 +54,15 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scenes/Player/Player.gd"
 }, {
-"base": "Control",
+"base": "CanvasLayer",
 "class": "Retry",
 "language": "GDScript",
 "path": "res://Scenes/Menu/Restart/Restart.gd"
 }, {
-"base": "Node2D",
-"class": "Weapon",
+"base": "StaticBody2D",
+"class": "Spaceship",
 "language": "GDScript",
-"path": "res://Scenes/Weapon/Weapon.gd"
+"path": "res://Scenes/Spaceship/Spaceship.gd"
 }, {
 "base": "Enemy",
 "class": "WormBall",
@@ -85,7 +85,7 @@ _global_script_class_icons={
 "ItemInventory": "",
 "Player": "",
 "Retry": "",
-"Weapon": "",
+"Spaceship": "",
 "WormBall": "",
 "Zombie": ""
 }
@@ -100,8 +100,8 @@ config/icon="res://icon.png"
 
 Global="*res://Singletons/Global.gd"
 GlobalDataParser="*res://Singletons/Global_DataParser.gd"
-GlobalItemActions="*res://Singletons/Global_ItemActions.gd"
 GlobalItemDatabase="*res://Singletons/Global_ItemDatabase.gd"
+GlobalItemActions="*res://Singletons/Global_ItemActions.gd"
 
 [display]
 

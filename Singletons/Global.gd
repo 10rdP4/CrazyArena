@@ -18,6 +18,18 @@ var arena: Arena = null
 var player: Player = null
 var current_bullet: PackedScene = null
 
+# Level variables
+var on_level := true
+var current_level:= 0
+var num_enemies:= 2
+var enemies_type = [\
+	["Zombie"],\
+	["Zombie", "WormBall"],\
+	["Zombie", "WormBall"]\
+]
+var on_game_enemies = 0
+var max_level = enemies_type.size()
+
 
 # Getters
 func get_display_size() -> Vector2:
@@ -51,10 +63,12 @@ func init_retry_menu(retry: Node) -> void:
 # Spawnear el jugador
 func spawn_player() -> void:
 	player = PACKED_PLAYER.instance()
-	player.global_position = Vector2.ZERO
+	player.global_position = Vector2(0, 10)
 	arena.add_child(player, true)
 
 func restart_game() ->  void:
+	on_level = true
+	current_level = 0
 	get_tree().reload_current_scene()
 
 # Inicio de Juego
@@ -75,3 +89,30 @@ func _input(__event: InputEvent) -> void:
 			restart_game()
 		if __event.is_action_pressed("quit"):
 			get_tree().quit()
+
+# MECANICAS DEL JUEGO
+func spawn_enemies() -> void:
+	for _i in range(num_enemies):
+		randomize()
+		var enemy_type = enemies_type[current_level][randi() % enemies_type[current_level].size()]
+		var enemy_scene = load("res://Scenes/Enemies/" + enemy_type + "/" + enemy_type + ".tscn")
+		var enemy = enemy_scene.instance()
+		enemy.position = arena.get_spwn_pos(enemy_type)
+		arena.add_child(enemy)
+		print(enemy_type)
+		on_game_enemies += 1
+
+func next_level() -> void:
+	if current_level + 1 < max_level:
+		print("next level")
+		current_level += 1
+		var oleada_timer:Timer = arena.find_node("OleadaTimer")
+		oleada_timer.start()
+	else:
+		print("Fin del juego")
+		end_game()
+
+func check_enemies_number() -> void:
+	if on_game_enemies <= 0:
+		on_level = false
+	pass

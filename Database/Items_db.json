@@ -8,14 +8,6 @@
             "icon" : "res://Sprites/Items/Food/Apple.png",
             "stackeable" : true,
             "restore" : 20
-        },
-        {
-            "id" : 1,
-            "type" : "food",
-            "name" : "Taco",
-            "icon" : "res://icon.png",
-            "stackeable" : true,
-            "restore" : 50
         }
     ],
     "potion" :
@@ -61,15 +53,13 @@
             "bullet" : "Blue_Bullet"
         }
     ],
-    "armor" :
+    "important":
     [
         {
             "id" : 0,
-            "type" : "armor",
-            "name" : "Helmet",
-            "icon" : "res://icon.png",
-            "stackeable" : false,
-            "protection" : 10
+            "type" : "important",
+            "name" : "Cable",
+            "icon" : "res://icon.png"
         }
     ],
     "spwn" :

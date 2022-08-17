@@ -30,7 +30,7 @@ scale = Vector2( 1, 0.522727 )
 curve = SubResource( 2 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
-position = Vector2( 12, 36 )
+position = Vector2( 12, 3.82609 )
 rotation = -1.5708
 rotate = false
 cubic_interp = false

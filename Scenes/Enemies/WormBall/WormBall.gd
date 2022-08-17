@@ -60,6 +60,8 @@ func take_damage(damage_taken: int) -> void:
 		health = health - damage_taken
 		$Sprite.material.set_shader_param("flash_modifier", 0.4)
 		$FlashTimer.start()
+		if health <= 0:
+			dead()
 
 func _physics_process(_delta: float) -> void:
 	check_game_over()

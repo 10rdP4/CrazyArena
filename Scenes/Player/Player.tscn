@@ -146,8 +146,7 @@ shape = SubResource( 1 )
 material = SubResource( 24 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 3 )
-animation = "roll"
-frame = 3
+animation = "idle"
 
 [node name="Camera" parent="." index="2" instance=ExtResource( 3 )]
 
