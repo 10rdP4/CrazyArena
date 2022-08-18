@@ -31,7 +31,7 @@ func item_main_action(item: Dictionary) -> void:
 		"spwn":
 			instance_entity(item["entity"])
 		_:
-			print("Error en el tipo. Global_itemActions.gd")
+			print("No se puede hacer nada con este item")
 	pass
 
 

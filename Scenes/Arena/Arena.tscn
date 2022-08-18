@@ -45,18 +45,25 @@ randomitem = false
 
 [node name="Item3" parent="." instance=ExtResource( 3 )]
 position = Vector2( 64, -200 )
-item_type = "spwn"
-item_id = 1
+item_type = "important"
 randomitem = false
 
 [node name="Item4" parent="." instance=ExtResource( 3 )]
-position = Vector2( 160, -128 )
-item_type = "food"
+position = Vector2( 146, -163 )
+item_type = "important"
+item_id = 1
 randomitem = false
 
 [node name="Item5" parent="." instance=ExtResource( 3 )]
-position = Vector2( 184, -24 )
-item_type = "potion"
+position = Vector2( 201, -103 )
+item_type = "important"
+item_id = 2
+randomitem = false
+
+[node name="Item6" parent="." instance=ExtResource( 3 )]
+position = Vector2( 216, -13 )
+item_type = "important"
+item_id = 3
 randomitem = false
 
 [node name="Tree" parent="." instance=ExtResource( 6 )]

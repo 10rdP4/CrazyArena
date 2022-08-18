@@ -15,3 +15,6 @@ func get_item_by_name(i_type: String, i_name: String):
 # Devuelve la lista de items de un tipo
 func get_item_list_by_type(i_type: String) -> Array:
 	return item_database.get(i_type)
+
+func get_item_type_list() -> Array:
+	return item_database.keys()

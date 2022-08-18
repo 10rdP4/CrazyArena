@@ -2,13 +2,7 @@ extends Area2D
 
 class_name Item
 
-var item_types  = {
-	FOOD = "food",
-	WEAPON = "weapon",
-	IMPORTANT = "important",
-	POTION = "potion",
-	SPWN = "spwn"
-}
+var item_types
 
 export var item_type:String
 export var item_id:int
@@ -52,6 +46,7 @@ func _process(delta) -> void:
 	$Path2D/PathFollow2D.offset += 25 * delta
 			
 func _ready() -> void:
+	item_types = GlobalItemDatabase.get_item_type_list()
 	if randomitem:
 		random_item_config()
 	change_icon_texture()

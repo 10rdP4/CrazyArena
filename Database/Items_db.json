@@ -59,7 +59,25 @@
             "id" : 0,
             "type" : "important",
             "name" : "Cable",
-            "icon" : "res://icon.png"
+            "icon" : "res://Sprites/Items/Important/cable.png"
+        },
+        {
+            "id" : 1,
+            "type" : "important",
+            "name" : "Motherboard",
+            "icon" : "res://Sprites/Items/Important/motherboard.png"
+        },
+        {
+            "id" : 2,
+            "type" : "important",
+            "name" : "Screw Box",
+            "icon" : "res://Sprites/Items/Important/screws_box.png"
+        },
+        {
+            "id" : 3,
+            "type" : "important",
+            "name" : "Tape",
+            "icon" : "res://Sprites/Items/Important/tape.png"
         }
     ],
     "spwn" :
