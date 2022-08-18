@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scenes/Spaceship/Spaceship.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Spaceship/spaceship.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/Fire/Fire.tscn" type="PackedScene" id=3]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 62.0
@@ -41,6 +42,10 @@ shape = SubResource( 2 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 4 )
 animation = "spaceship"
+
+[node name="Fire" parent="." instance=ExtResource( 3 )]
+position = Vector2( 113, -25 )
+rotation = 0.838008
 
 [connection signal="body_entered" from="Puerta" to="." method="_on_Puerta_body_entered"]
 [connection signal="body_exited" from="Puerta" to="." method="_on_Puerta_body_exited"]
