@@ -47,16 +47,16 @@ position = Vector2( 39, 98 )
 curve = SubResource( 1 )
 
 [node name="WormBallSpwn" type="PathFollow2D" parent="WormBallPath"]
-position = Vector2( -554.738, -450.605 )
-rotation = 2.94527
-offset = 2668.09
+position = Vector2( -603, -879 )
+rotation = 3.05031
 
 [node name="ZombiePath" type="Path2D" parent="."]
 position = Vector2( 1190, 371 )
 curve = SubResource( 2 )
 
 [node name="ZombieSpwn" type="PathFollow2D" parent="ZombiePath"]
-position = Vector2( -568, -661 )
-rotation = -1.52446
+position = Vector2( -1721.68, 580.167 )
+rotation = 2.58123
+offset = 6634.97
 
 [connection signal="timeout" from="OleadaTimer" to="." method="_on_Oleada_timeout"]

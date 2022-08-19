@@ -33,7 +33,7 @@ func _physics_process(_delta: float) -> void:
 
 func _ready() -> void:
 	health = 500
-	speed = 75 
+	speed = 175 
 	pass
 
 
