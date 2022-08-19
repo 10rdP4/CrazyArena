@@ -12,6 +12,12 @@ func zombie_movement() -> void:
 	dir_to_player = global_position.direction_to(Global.player.global_position)
 	if Global.snap_bodies:
 		position = position.round()
+	
+	if dir_to_player.x < 0:
+		$Sprite.flip_h = true
+	else:
+		$Sprite.flip_h = false
+
 	move_and_slide(dir_to_player * speed)
 
 func check_collision():
