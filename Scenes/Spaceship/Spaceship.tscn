@@ -1,8 +1,13 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scenes/Spaceship/Spaceship.gd" type="Script" id=1]
-[ext_resource path="res://Sprites/Spaceship/spaceship.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Spaceship/spaceship_2.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/Fire/Fire.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Sprites/Spaceship/spaceship_1.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/Spaceship/spaceship_3.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/Spaceship/spaceship_4.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/Spaceship/spaceship_0.png" type="Texture" id=7]
+[ext_resource path="res://Scenes/Electricity/Electricity.tscn" type="PackedScene" id=8]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 62.0
@@ -11,16 +16,12 @@ height = 154.0
 [sub_resource type="CircleShape2D" id=2]
 radius = 36.0139
 
-[sub_resource type="AtlasTexture" id=3]
-atlas = ExtResource( 2 )
-region = Rect2( 0, 0, 138, 123 )
-
 [sub_resource type="SpriteFrames" id=4]
 animations = [ {
-"frames": [ SubResource( 3 ) ],
+"frames": [ ExtResource( 7 ), ExtResource( 4 ), ExtResource( 2 ), ExtResource( 5 ), ExtResource( 6 ) ],
 "loop": true,
 "name": "spaceship",
-"speed": 0.1
+"speed": 0.0
 } ]
 
 [node name="Spaceship" type="StaticBody2D"]
@@ -43,9 +44,24 @@ scale = Vector2( 2, 2 )
 frames = SubResource( 4 )
 animation = "spaceship"
 
-[node name="Fire" parent="." instance=ExtResource( 3 )]
-position = Vector2( 113, -25 )
+[node name="Fire_right" parent="." instance=ExtResource( 3 )]
+position = Vector2( 110, -28 )
 rotation = 0.838008
+amount = 50
+
+[node name="Fire_back_left" parent="." instance=ExtResource( 3 )]
+position = Vector2( -117, -1 )
+rotation = -0.652684
+z_index = -6
+amount = 20
+
+[node name="Fire_front_left" parent="." instance=ExtResource( 3 )]
+position = Vector2( -109, -9 )
+rotation = -0.779353
+amount = 10
+
+[node name="Elecricity" parent="." instance=ExtResource( 8 )]
+position = Vector2( 97, 13 )
 
 [connection signal="body_entered" from="Puerta" to="." method="_on_Puerta_body_entered"]
 [connection signal="body_exited" from="Puerta" to="." method="_on_Puerta_body_exited"]

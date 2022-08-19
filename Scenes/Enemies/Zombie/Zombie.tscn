@@ -1,12 +1,13 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scenes/Enemy/Enemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Enemies/Zombie/Zombie.gd" type="Script" id=2]
 [ext_resource path="res://shaders/flash_on_hit.tres" type="Shader" id=3]
-[ext_resource path="res://icon.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/Enemies/Zombie/zombie.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/Map/light.png" type="Texture" id=5]
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 21.0238
+radius = 33.0606
 
 [sub_resource type="ShaderMaterial" id=3]
 resource_local_to_scene = true
@@ -14,11 +15,15 @@ shader = ExtResource( 3 )
 shader_param/flash_color = Color( 1, 1, 1, 1 )
 shader_param/flash_modifier = 0.0
 
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 32, 32 )
+
 [sub_resource type="SpriteFrames" id=4]
 animations = [ {
-"frames": [ ExtResource( 4 ) ],
+"frames": [ SubResource( 5 ) ],
 "loop": true,
-"name": "default",
+"name": "zombie_walk",
 "speed": 5.0
 } ]
 
@@ -30,10 +35,20 @@ shape = SubResource( 2 )
 
 [node name="Sprite" parent="." index="1"]
 material = SubResource( 3 )
+scale = Vector2( 2, 2 )
 frames = SubResource( 4 )
+animation = "zombie_walk"
 
 [node name="AttackTimer" parent="." index="2"]
 one_shot = true
 autostart = true
+
+[node name="Light2D" type="Light2D" parent="." index="4"]
+modulate = Color( 1, 1, 1, 0.0705882 )
+position = Vector2( -2, -8 )
+texture = ExtResource( 5 )
+texture_scale = 0.4
+color = Color( 0.941176, 0.207843, 0.290196, 1 )
+energy = 1.37
 
 [connection signal="timeout" from="AttackTimer" to="." method="_on_AttackTimer_timeout"]

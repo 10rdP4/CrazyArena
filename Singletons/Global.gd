@@ -25,6 +25,8 @@ var num_enemies:= 2
 var enemies_type = [\
 	["Zombie"],\
 	["Zombie", "WormBall"],\
+	["Zombie", "WormBall"],\
+	["Zombie", "WormBall"],\
 	["Zombie", "WormBall"]\
 ]
 var on_game_enemies = 0
@@ -105,6 +107,7 @@ func spawn_enemies() -> void:
 func next_level() -> void:
 	if current_level + 1 < max_level:
 		print("next level")
+		on_level = true
 		current_level += 1
 		var oleada_timer:Timer = arena.find_node("OleadaTimer")
 		oleada_timer.start()

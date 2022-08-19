@@ -18,7 +18,7 @@ shader_param/vignette_rgb = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 6 )
 
 [sub_resource type="DynamicFont" id=3]
-size = 32
+size = 24
 font_data = ExtResource( 6 )
 
 [node name="HUD" type="Control"]
@@ -45,7 +45,7 @@ anchor_bottom = 1.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 margin_right = 1280.0
-margin_bottom = 667.0
+margin_bottom = 675.0
 size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
@@ -72,7 +72,7 @@ align = 1
 valign = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
-margin_top = 671.0
+margin_top = 679.0
 margin_right = 1280.0
 margin_bottom = 720.0
 
@@ -91,6 +91,6 @@ texture_progress_offset = Vector2( 4, 5 )
 [node name="Health_Points" type="Label" parent="VBoxContainer/VBoxContainer"]
 margin_top = 16.0
 margin_right = 1280.0
-margin_bottom = 49.0
+margin_bottom = 41.0
 size_flags_vertical = 1
 custom_fonts/font = SubResource( 3 )

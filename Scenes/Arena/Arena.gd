@@ -11,5 +11,4 @@ func get_spwn_pos(type : String) -> Vector2:
 	return spwn.position
 
 func _on_Oleada_timeout():
-	Global.on_level = true
 	Global.spawn_enemies()
