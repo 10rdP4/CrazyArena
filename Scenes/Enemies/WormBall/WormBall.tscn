@@ -110,7 +110,7 @@ material = SubResource( 16 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 8 )
 animation = "roll"
-frame = 1
+frame = 3
 playing = true
 flip_h = true
 
