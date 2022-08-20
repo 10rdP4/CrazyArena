@@ -124,7 +124,12 @@ func invert_player_sprite(invert: bool) -> void:
 
 func weapon_point_to_mouse() -> void:
 	var rads = Global.player.position.angle_to_point(Global.get_global_mouse_position())
-	$Weapon.rotation_degrees = rad2deg(rads) - 180 
+	var deg =  rad2deg(rads) - 180 
+	$Weapon.rotation_degrees = deg
+	$Dron.rotation_degrees = deg
+	$Dron.rotate(deg)
+	
+
 
 func drop_current_item() -> void:
 	if get_current_item()["name"] != "empty":
