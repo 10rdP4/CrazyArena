@@ -2,9 +2,11 @@ extends Node2D
 
 var deg_var = 22.5
 
+var animated_sprite
+
 func rotate(deg) -> void:
 	deg = int(deg)
-	$AnimatedSprite.rotation_degrees = -deg
+	animated_sprite.rotation_degrees = -deg
 	var num = int(-deg / 22.5)
 
 	if num % 2 == 0:
@@ -12,4 +14,7 @@ func rotate(deg) -> void:
 	else:
 		num = (num + 1 ) / 2 % 8
 	
-	$AnimatedSprite.frame = num
+	animated_sprite.frame = num
+
+func _ready() -> void:
+	animated_sprite = find_node("AnimatedSprite")

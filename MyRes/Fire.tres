@@ -9,7 +9,7 @@ _data = [ Vector2( 0.011236, 250.364 ), 0.0, 0.0, 0, 0, Vector2( 1, -260.182 ), 
 curve = SubResource( 6 )
 
 [sub_resource type="Gradient" id=2]
-colors = PoolColorArray( 0.597656, 0.593169, 0.310501, 1, 0.00128174, 0.164062, 0, 1 )
+colors = PoolColorArray( 0.515086, 0.812988, 0.441427, 1, 0.0310722, 0.156738, 0, 1 )
 
 [sub_resource type="GradientTexture" id=3]
 gradient = SubResource( 2 )

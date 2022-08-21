@@ -29,14 +29,13 @@ position = Vector2( 0, 5 )
 curve = SubResource( 2 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
-position = Vector2( 12, 3.82609 )
+position = Vector2( 12, -5 )
 rotation = -1.5708
 rotate = false
 cubic_interp = false
 lookahead = 0.001
 
 [node name="Icon" type="Sprite" parent="Path2D/PathFollow2D"]
-position = Vector2( 22.6087, -4.76837e-06 )
 rotation = 1.5708
 scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )

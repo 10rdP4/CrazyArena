@@ -39,18 +39,10 @@
         {
             "id": 0,
             "type" : "weapon",
-            "name" : "Pistol",
+            "name" : "Controler",
             "icon" : "res://Sprites/Items/Weapon/Pistol.png",
             "stackeable" : false,
             "bullet" : "Basic_Bullet"
-        },
-        {
-            "id": 1,
-            "type" : "weapon",
-            "name" : "Blue_Pistol",
-            "icon" : "res://Sprites/Items/Weapon/Blue_Pistol.png",
-            "stackeable" : false,
-            "bullet" : "Blue_Bullet"
         }
     ],
     "important":

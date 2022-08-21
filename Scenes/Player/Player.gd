@@ -101,15 +101,8 @@ func get_free_inventory_slots() -> int :
 	return count_empty_slots
 
 func change_weapon_bullet() -> void:
-		Global.change_current_bullet(get_current_item()["bullet"])
-
-func change_weapon_visibility():
-	if get_current_item()["type"] == "weapon":
-		change_weapon_bullet()
-		$Weapon/Sprite.texture = load(get_current_item()["icon"])
-		$Weapon.visible = true
-	else:
-		$Weapon.visible = false
+		if get_current_item()["type"] == "weapon":
+			Global.change_current_bullet(get_current_item()["bullet"])
 
 func add_item_to_inventory(item: Dictionary) -> void:
 	var first_empty_slot = inventory.find(empty_item)
@@ -126,10 +119,12 @@ func weapon_point_to_mouse() -> void:
 	var rads = Global.player.position.angle_to_point(Global.get_global_mouse_position())
 	var deg =  rad2deg(rads) - 180 
 	$Weapon.rotation_degrees = deg
+
+func move_dron() -> void:
+	var rads = Global.player.position.angle_to_point(Global.get_global_mouse_position())
+	var deg =  rad2deg(rads) - 180 
 	$Dron.rotation_degrees = deg
 	$Dron.rotate(deg)
-	
-
 
 func drop_current_item() -> void:
 	if get_current_item()["name"] != "empty":
@@ -143,7 +138,7 @@ func remove_current_item() -> void:
 
 func update_current_item() -> void:
 	set_current_item_label()
-	change_weapon_visibility()
+	change_weapon_bullet()
 	find_node("HUD").update_inventory()
 
 func take_damage(damage : int) -> void:
@@ -163,7 +158,7 @@ func get_current_item() -> Dictionary:
 	return inventory[current_item_pos]
 
 func get_shoot_point() -> Vector2:
-	return $Weapon/shoot_point.global_position
+	return $Dron/shoot_point.global_position
 
 func get_speed() -> float:
 	return sqrt(pow(velocity.x,2) + pow(velocity.y,2))
@@ -180,8 +175,8 @@ func _physics_process(_delta):
 	player_input()
 	player_movement()
 
-	if $Weapon.visible == true:
-		weapon_point_to_mouse()
+	if get_current_item()["name"] == "Controler":
+		move_dron()
 
 	if not can_roll:
 		hud.increase_rollbar($RollCooldown.time_left)

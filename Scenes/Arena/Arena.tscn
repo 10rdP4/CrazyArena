@@ -55,8 +55,8 @@ position = Vector2( 1190, 371 )
 curve = SubResource( 2 )
 
 [node name="ZombieSpwn" type="PathFollow2D" parent="ZombiePath"]
-position = Vector2( -1721.68, 580.167 )
-rotation = 2.58123
+position = Vector2( -1721.68, 580.166 )
+rotation = 2.58124
 offset = 6634.97
 
 [connection signal="timeout" from="OleadaTimer" to="." method="_on_Oleada_timeout"]
