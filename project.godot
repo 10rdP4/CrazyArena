@@ -69,6 +69,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scenes/Player/Player.gd"
 }, {
+"base": "StaticBody2D",
+"class": "Red_Tree",
+"language": "GDScript",
+"path": "res://Scenes/Tree/Tree.gd"
+}, {
 "base": "CanvasLayer",
 "class": "Retry",
 "language": "GDScript",
@@ -102,6 +107,7 @@ _global_script_class_icons={
 "Item": "",
 "ItemInventory": "",
 "Player": "",
+"Red_Tree": "",
 "Retry": "",
 "Spaceship": "",
 "WormBall": "",

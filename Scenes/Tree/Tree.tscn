@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://Sprites/Map/Trees/arbol_rojo.png" type="Texture" id=1]
+[ext_resource path="res://Scenes/Tree/Tree.gd" type="Script" id=1]
 [ext_resource path="res://shaders/tree_wind.tres" type="Shader" id=2]
+[ext_resource path="res://Sprites/Map/Trees/arbol_2.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Map/Trees/arbol_1.png" type="Texture" id=4]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 2 )
@@ -15,19 +17,34 @@ shader_param/distortion = null
 shader_param/heightOffset = 0.0
 shader_param/offset = 3.0
 
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 11, 5 )
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 4 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "arboles",
+"speed": 5.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=4]
+radius = 10.0
+height = 38.0
 
 [node name="Tree" type="StaticBody2D"]
-scale = Vector2( 2, 2 )
+scale = Vector2( 3, 3 )
+z_index = 5
+script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Sprite" type="AnimatedSprite" parent="."]
 material = SubResource( 1 )
-texture = ExtResource( 1 )
+position = Vector2( 5, -46 )
+frames = SubResource( 3 )
+animation = "arboles"
+frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 2.5, 27 )
-shape = SubResource( 2 )
+position = Vector2( 1, 0 )
+rotation = 1.5708
+shape = SubResource( 4 )

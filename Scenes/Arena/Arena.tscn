@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scenes/Arena/Arena.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Map/mapa.jpg" type="Texture" id=2]
 [ext_resource path="res://Scenes/Item/Item.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Flower/Flower.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Spaceship/Spaceship.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Tree/Tree.tscn" type="PackedScene" id=6]
 
 [sub_resource type="Curve2D" id=1]
 resource_local_to_scene = true
@@ -32,7 +33,7 @@ one_shot = true
 autostart = true
 
 [node name="Item" parent="." instance=ExtResource( 3 )]
-position = Vector2( -7, 287 )
+position = Vector2( -13, 159 )
 item_type = "weapon"
 randomitem = false
 
@@ -58,5 +59,20 @@ curve = SubResource( 2 )
 position = Vector2( -1721.68, 580.166 )
 rotation = 2.58124
 offset = 6634.97
+
+[node name="Tree" parent="." instance=ExtResource( 6 )]
+position = Vector2( -317, -754 )
+
+[node name="Tree2" parent="." instance=ExtResource( 6 )]
+position = Vector2( -643, -657 )
+
+[node name="Tree3" parent="." instance=ExtResource( 6 )]
+position = Vector2( -907, -384 )
+
+[node name="Tree4" parent="." instance=ExtResource( 6 )]
+position = Vector2( -471, -154 )
+
+[node name="Tree5" parent="." instance=ExtResource( 6 )]
+position = Vector2( 470, -477 )
 
 [connection signal="timeout" from="OleadaTimer" to="." method="_on_Oleada_timeout"]
