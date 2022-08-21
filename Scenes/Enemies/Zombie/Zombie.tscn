@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Scenes/Enemy/Enemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Enemies/Zombie/Zombie.gd" type="Script" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://Sprites/Enemies/Zombie/zombie_walk.png" type="Texture" id=4]
 [ext_resource path="res://Sprites/Map/light.png" type="Texture" id=5]
 [ext_resource path="res://Sprites/Enemies/Zombie/zombie_attack.png" type="Texture" id=6]
+[ext_resource path="res://Scenes/shadow/Shadow.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Sprites/Map/Shadows/LargeShadow.png" type="Texture" id=8]
 
 [sub_resource type="CircleShape2D" id=2]
 radius = 26.0
@@ -88,6 +90,7 @@ material = SubResource( 22 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 4 )
 animation = "zombie_walk"
+frame = 1
 playing = true
 
 [node name="AttackTimer" parent="." index="2"]
@@ -102,5 +105,9 @@ texture = ExtResource( 5 )
 texture_scale = 0.4
 color = Color( 0.941176, 0.207843, 0.290196, 1 )
 energy = 1.37
+
+[node name="Shadow" parent="." index="5" instance=ExtResource( 7 )]
+position = Vector2( 6, 23 )
+texture = ExtResource( 8 )
 
 [connection signal="timeout" from="AttackTimer" to="." method="_on_AttackTimer_timeout"]
